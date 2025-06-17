@@ -78,7 +78,8 @@ def run_docker_container(
 ) -> int:
     image = add_latest_tag_if_not_present(image=image)
     image_exists = any(
-        image in (existing_image.tags+existing_image.attrs['RepoDigests']) for existing_image in client.images.list())
+        image in (existing_image.tags+existing_image.attrs['RepoDigests'])
+        for existing_image in client.images.list())
     if image_exists:
         print(f'Found image {image!r}\n')
     else:
